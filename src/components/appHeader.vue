@@ -1,5 +1,3 @@
 <template>
-  <header>
-    Speech Recognition | Vue.js | kablosuzkedi
-  </header>
+  <header>Speech To Text</header>
 </template>
