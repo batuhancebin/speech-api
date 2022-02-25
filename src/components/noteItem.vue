@@ -1,12 +1,7 @@
 <template>
-  <div class="note_item">
-    <div class="id_content">
-      <span> #{{ noteItem.id }} </span>
-    </div>
-    <div class="note_content">
+    <p class="note_content">
       {{ noteItem.note }}
-    </div>
-  </div>
+    </p>
 </template>
 
 <script>

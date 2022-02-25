@@ -15,33 +15,36 @@ export default {
   props: {
     addNote: {
       type: Function,
-      required: true
+      required: true,
     },
     deleteNote: {
       type: Function,
-      required: true
+      required: true,
     },
     removeAllNotes: {
       type: Function,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       speechToText: null,
       isListening: false,
-      recognition: null
+      recognition: null,
     };
   },
   methods: {
     listen() {
-      this.isListening = true;
-      this.recognition.start();
+      if (this.isListening) {
+        this.recognition.stop();
+        this.isListening = false;
+      } else {
+        this.isListening = true;
+        this.recognition.start();
+      }
     },
     record(event) {
-      this.isListening = false;
       this.speechToText = event.results[0][0].transcript;
-
       const parseRegex = /(?<id>(\d*))\s(?=nolu).*(?<command>(sil))$/giu;
       const voiceMatch = parseRegex.exec(this.speechToText);
 
@@ -57,14 +60,19 @@ export default {
           this.addNote(event.results[0][0].transcript);
         }
         this.speechToText = null;
-      }, 1000);
-    }
+        this.recognition.stop();
+        setTimeout(() => {
+          this.recognition.start();
+        }, 500);
+      }, 500);
+    },
   },
   mounted() {
     this.recognition = new webkitSpeechRecognition();
     this.recognition.lang = "tr";
+    this.recognition.continuous = true;
     this.recognition.onresult = this.record;
-  }
+  },
 };
 </script>
 

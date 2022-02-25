@@ -7,11 +7,13 @@
         :deleteNote="deleteNote"
         :removeAllNotes="removeAllNotes"
       />
-      <note-item
-        v-for="note in notes"
-        :key="note.id"
-        :noteItem="note"
-      ></note-item>
+      <div class="note_item">
+        <note-item
+          v-for="note in notes"
+          :key="note.id"
+          :noteItem="note"
+        ></note-item>
+      </div>
     </div>
   </div>
 </template>
@@ -24,35 +26,29 @@ export default {
   components: {
     appHeader,
     noteItem,
-    speech
+    speech,
   },
   data() {
     return {
       notes: [],
-      nnotes: [
-        { id: 1, note: "note 1" },
-        { id: 2, note: "note 2" },
-        { id: 3, note: "note 3" },
-        { id: 4, note: "note 4" }
-      ]
     };
   },
   methods: {
     addNote(note) {
       this.notes.push({
         id: this.notes.length + 1,
-        note: note
+        note: note,
       });
     },
     deleteNote(id) {
       this.notes.splice(
-        this.notes.findIndex(n => n.id == id),
+        this.notes.findIndex((n) => n.id == id),
         1
       );
     },
     removeAllNotes() {
       this.notes = [];
-    }
-  }
+    },
+  },
 };
 </script>
