@@ -1,3 +1,3 @@
 <template>
-  <header>Speech To Text</header>
+  <header>Text of Voice</header>
 </template>

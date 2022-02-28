@@ -33,13 +33,13 @@ header {
     color: #333;
     width: 500px;
     text-align: justify;
-    background-color: #f4f4f4;
+    /* background-color: #f4f4f4; */
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     padding: 10px;
     margin-bottom: 10px;
-    border: 2px solid #333;
+    /* border: 2px solid #333; */
     flex-direction: column;
 }
 
